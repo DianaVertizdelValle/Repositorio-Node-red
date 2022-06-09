@@ -1,0 +1,52 @@
+[
+    {
+        "id": "cb65c2ca347310d0",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "c28198814f78cb64",
+        "type": "inject",
+        "z": "cb65c2ca347310d0",
+        "name": "Mensaje inicial",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "hola mundo",
+        "payloadType": "str",
+        "x": 220,
+        "y": 120,
+        "wires": [
+            [
+                "8bb288bf1633e857"
+            ]
+        ]
+    },
+    {
+        "id": "8bb288bf1633e857",
+        "type": "debug",
+        "z": "cb65c2ca347310d0",
+        "name": "Salida",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 410,
+        "y": 120,
+        "wires": []
+    }
+]
