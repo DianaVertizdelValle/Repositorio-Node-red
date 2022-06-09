@@ -28,7 +28,8 @@
         "y": 120,
         "wires": [
             [
-                "8bb288bf1633e857"
+                "8bb288bf1633e857",
+                "da3a9f2340adb69f"
             ]
         ]
     },
@@ -47,6 +48,23 @@
         "statusType": "auto",
         "x": 410,
         "y": 120,
+        "wires": []
+    },
+    {
+        "id": "da3a9f2340adb69f",
+        "type": "debug",
+        "z": "cb65c2ca347310d0",
+        "name": "Salida2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 400,
+        "y": 200,
         "wires": []
     }
 ]
