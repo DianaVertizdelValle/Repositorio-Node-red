@@ -3,8 +3,24 @@
         "id": "cb65c2ca347310d0",
         "type": "tab",
         "label": "Flow 1",
-        "disabled": false,
+        "disabled": true,
         "info": "",
+        "env": []
+    },
+    {
+        "id": "fcf60ada9fdf90dd",
+        "type": "tab",
+        "label": "importado",
+        "disabled": true,
+        "info": "# Flujo importado\n\nEn este flujo hemos **aprendido** a _importar_ datos desde la documentación de Node-Red",
+        "env": []
+    },
+    {
+        "id": "32540c5adaf4934d",
+        "type": "tab",
+        "label": "Petición web",
+        "disabled": false,
+        "info": "# Flujo de demostración de peticiones web\nEn este flujo vamos a realizar algunas peticiones web utilizando el nodo ***http_request***",
         "env": []
     },
     {
@@ -17,9 +33,9 @@
                 "p": "payload"
             }
         ],
-        "repeat": "",
+        "repeat": "5",
         "crontab": "",
-        "once": false,
+        "once": true,
         "onceDelay": 0.1,
         "topic": "",
         "payload": "hola mundo",
@@ -29,7 +45,7 @@
         "wires": [
             [
                 "8bb288bf1633e857",
-                "da3a9f2340adb69f"
+                "c0a885910063ff39"
             ]
         ]
     },
@@ -46,7 +62,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 410,
+        "x": 690,
         "y": 120,
         "wires": []
     },
@@ -63,8 +79,201 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 400,
-        "y": 200,
+        "x": 700,
+        "y": 300,
         "wires": []
+    },
+    {
+        "id": "c0a885910063ff39",
+        "type": "change",
+        "z": "cb65c2ca347310d0",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 460,
+        "y": 300,
+        "wires": [
+            [
+                "da3a9f2340adb69f"
+            ]
+        ]
+    },
+    {
+        "id": "58ffae9d.a7005",
+        "type": "debug",
+        "z": "fcf60ada9fdf90dd",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "17626462.e89d9c",
+        "type": "inject",
+        "z": "fcf60ada9fdf90dd",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 240,
+        "y": 180,
+        "wires": [
+            [
+                "2921667d.d6de9a"
+            ]
+        ]
+    },
+    {
+        "id": "2921667d.d6de9a",
+        "type": "function",
+        "z": "fcf60ada9fdf90dd",
+        "name": "Format timestamp",
+        "func": "// Create a Date object from the payload\nvar date = new Date(msg.payload);\n// Change the payload to be a formatted Date string\nmsg.payload = date.toString();\n// Return the message so it can be sent on\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 180,
+        "wires": [
+            [
+                "58ffae9d.a7005"
+            ]
+        ]
+    },
+    {
+        "id": "ac7af268ba3418a6",
+        "type": "http request",
+        "z": "32540c5adaf4934d",
+        "name": "petición puppies",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://random.dog/woof.json",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 460,
+        "y": 180,
+        "wires": [
+            [
+                "607236f6ba6f153e"
+            ]
+        ]
+    },
+    {
+        "id": "0d41f8c4cea3c3cd",
+        "type": "inject",
+        "z": "32540c5adaf4934d",
+        "name": "Realiza petición",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 260,
+        "y": 180,
+        "wires": [
+            [
+                "ac7af268ba3418a6"
+            ]
+        ]
+    },
+    {
+        "id": "d627b3ec57e51475",
+        "type": "debug",
+        "z": "32540c5adaf4934d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 890,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "607236f6ba6f153e",
+        "type": "change",
+        "z": "32540c5adaf4934d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "salida",
+                "pt": "msg",
+                "to": "payload.url",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 660,
+        "y": 220,
+        "wires": [
+            [
+                "d627b3ec57e51475",
+                "3f166e8faed3f5a5"
+            ]
+        ]
+    },
+    {
+        "id": "3f166e8faed3f5a5",
+        "type": "image viewer",
+        "z": "32540c5adaf4934d",
+        "name": "",
+        "width": "300",
+        "data": "payload",
+        "dataType": "msg",
+        "active": true,
+        "x": 1010,
+        "y": 380,
+        "wires": [
+            []
+        ]
     }
 ]
